@@ -1,3 +1,18 @@
+/* 
+    / )|                                   |( \
+   / / |            Charles Silva          | \ \
+ _( (_ |  _  [www.charlessilva.com.br]  _  | _) )_
+(((\ \)|_/ )___________________________( \_|(/ /)))
+(\\\\ \_/ /                             \ \_/ ////)
+ \       /                               \       /
+  \    _/                                 \_    /
+  /   /                                     \   \
+Autor   : Charles Silva (suporte@charlessilva.com.br)
+Linguagen : Arduino (C)
+twitter: http://twitter.com/charlessilva_
+GitHub: https://github.com/silvacharles
+*/
+
 // inclui o SoftwareSerial na biblioteca
 #include "SoftwareSerial.h"
 
