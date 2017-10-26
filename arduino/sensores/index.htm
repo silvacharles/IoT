@@ -1,132 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=decive-width; intial-scale=1; maximum-scale=1">
+    <script type="text/javascript">
+        function LerSensores(){
+            var request = new XMLHttpRequest();
+            request.onreadystatechange = function(){
+                if(this.readyState == 4){
+                    if(this.status == 200){
+                        if(this.responseText != null){
+                            var dados = this.responseText.split('|');
+                            document.getElementById("sensor1").innerHTML = dados[0];
+                            document.getElementById("sensor2").innerHTML = dados[1];
+                            if(dados[2] == 0){
+                                document.getElementById("botao1").style.backgroundColor = "#ff0000";
+                                document.getElementById("botao1").childNodes[0].nodeValue = "AC: Desligado";
+                            }
+                            else{
+                                document.getElementById("botao1").style.backgroundColor = "#3e8e41";
+                                document.getElementById("botao1").childNodes[0].nodeValue = "AC: Ligado";
+                            }
+                        }
+                    }
+                }
+            }
+            request.open("GET", "ajax_LerDados", true);
+            request.send(null);
+            setTimeout('LerSensores()', 500);
+        }
+        function BotaoCarga1(){
+            var request = new XMLHttpRequest();
+            request.open("GET", "ajax_carga1", true);
+            request.send(null);
+        }
+    </script>
 
-	<head>
-		<title>Charles Silva</title>
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            margin: 15px auto;
+        }
 
-		<meta name="viewport" content="width=decive-width; intial-scale=1; maximum-scale=1">
-                <meta charset="UTF-8">
-		<script type="text/javascript">
-			function LerSensores(){
-				var request = new XMLHttpRequest();
-				request.onreadystatechange = function(){
-					if(this.readyState == 4){
-						if(this.status == 200){
-							if(this.responseText != null){
-								var dados = this.responseText.split('|');
-								document.getElementById("sensor1").innerHTML = dados[0];
-								document.getElementById("sensor2").innerHTML = dados[1];
-								if(dados[2] == 0){
-									document.getElementById("botao1").style.backgroundColor = "#FF9696";
-								}
-								else{
-									document.getElementById("botao1").style.backgroundColor = "#ADFF85";
-								}
-							}
-						}
-					}
-				}
-				request.open("GET", "ajax_LerDados", true);
-				request.send(null);
-				setTimeout('LerSensores()', 500);
-			}
-			function BotaoCarga1(){
-				var request = new XMLHttpRequest();
-				request.open("GET", "ajax_carga1", true);
-				request.send(null);
-			}
-		</script>
+        #conteiner {
+            align-content: center;
+            text-align: center;
+            width: auto;
+            height: auto;
 
-		<style type="text/css">
-		div > h2 {
-			color: #00979C;
-		}
-		body {
-			font-family: Arial;
-			margin: 0px;
-		}
-		.header{
-			width: 100%;
-			height: 110px;
-			border: 10px;
-			background-color: #F6F9F9;
-			margin-top: 0px;
-		}
-		.quadrado{
-			border-style: solid;
-			border-color: #00979C;
-			background-color: #F6F9F9;
-			width: 150px;
-			height: 150px;
-			text-align: center;
-			display: inline-block;
-			margin-bottom: 5px;
-		}
-		h5{
-			margin-top: 40px;
-			margin-bottom: 0px;
-			color: #00979C;
-			font-size: 15px;
-		}
-		p{
-			font-size: 50px;
-			margin: 0px;
-			color: #00979C;
-		}
-		.carga{
-			font-size: 30px;
-			font-weight: bold;
-			margin-top: 50px;
-		}
-		#botao1{
-			border-style: solid;
-			border-color: #00979C;
-			background-color: #F6F9F9;
-			width: 150px;
-			height: 150px;
-			text-align: center;
-			display: inline-block;
-			margin-bottom: 5px;
-			cursor: pointer;
-		}
-		</style>
-	</head>
+        }
+        p{
+            font-size: 50px;
+            margin: 0px auto;
+            color: #00979C;
+        }
 
+        h1 {
+            color: #000000;
+            text-align: center;
+            font-family: "MS Gothic";
+        }
+        h2 {
+            color: #00979C;
+            text-align: center;
+        }
+        h5{
+            margin-top: 40px;
+            margin-bottom: 0px;
+            color: #00979C;
+            font-size: 15px;
+            text-align: center;
+        }
+        #cabecalho {
+            align-self: center;
+            border-radius: 25px;
+            background: #F6F9F9;
+            padding: 20px;
+            width: 400px;
+            height: 550px;
+            margin: 0 auto;
+        }
 
-	<body onload="LerSensores()">
-		<center>
-			<div class="header">
-			</br>
-				<div>
-					<h2>Sistema de Mensuração</h2>
-				</div>
-			</br>
-			</div>
+        .quadrado {
+            border-radius: 25px;
+            border: 2px solid #73AD21;
+            padding: 20px;
+            width: 150px;
+            height: 150px;
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
 
-		</br>
+        .botao {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: grey;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
 
-			<div class="quadrado">
-				<h5>Luminosidade:</h5>
-				<p id="sensor1">0%</p>
-			</div>
+        .botao:hover {background-color: green}
 
-			<div class="quadrado">
-				<h5>Temperatura:</h5>
-				<p id="sensor2">0°C</p>
-			</div>
+        .botao:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
 
-		</br>
+        .ativar {
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+        #rodape {
+            margin-top: -10px;
+            text-align: center;
+        }
+    </style>
 
-			<div id="botao1" onclick="BotaoCarga1()">
-				<p class="carga">CARGA</p>
-			</div>
+    <title>Charles Silva</title>
+</head>
+<body onload="LerSensores()">
+<div id="conteiner">
+    <div id="cabecalho">
+        <h1>Sistema de Monitoramento</h1>
+        <div class="quadrado">
+        <h2>Luminosidade</h2>
+        <p id="sensor1">0%</p>
+    </div>
+    <div class="quadrado">
+        <h2>Temperatura</h2>
+        <p id="sensor2">0°C</p>
+    </div>
+    <div class="quadrado">
+        <h2>Umidade</h2>
+        <p id="sensor3">-</p>
+    </div>
+<div class="quadrado">
+        <h2>Movimento</h2>
+        <p id="sensor4">-</p>
+    </div>
 
-		</br>
-
-
-		</center>
-	</body>
-
-
-
+    <div onclick="BotaoCarga1()">
+        <button id="botao1" class="botao">Ar condicionado</button>
+    </div>
+</div>
+    <div id="rodape">
+        <h6>&copy; 2009 - 2017. Desenvolvido por <a href="http://www.charlessilva.com.br">Charles Silva</h6></div>
+</div>
+</body>
 </html>
