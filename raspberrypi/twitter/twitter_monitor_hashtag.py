@@ -23,7 +23,7 @@ OAUTH_TOKEN = 'seu_token'
 OAUTH_TOKEN_SECRET = 'seu_token_secret'
 
 # Reproduz som usando o mplayer
-bb8_sounds = ['mplayer /home/pi/Documentos/GitHub/hashtags.mp3', 'mplayer /home/pi/Documentos/GitHub/hashtags2.mp3']
+bb8_sounds = ['mpg321 /home/pi/Documentos/GitHub/hashtags.mp3', 'mpg321 /home/pi/Documentos/GitHub/hashtags2.mp3']
 
 # randonizar os 2 sons
 def sound():
